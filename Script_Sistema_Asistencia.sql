@@ -79,3 +79,6 @@ Create table if not exists Justificacion(
 
     FOREIGN KEY (id_asistencia) REFERENCES asistencia(id_asistencia)
 );
+INSERT INTO Estudiante (nombres, apellidos, correo, estado) VALUES
+('Ana', 'Maria', 'ana.maria@epn.edu.ec', 'activo');
+select * from Estudiante;
