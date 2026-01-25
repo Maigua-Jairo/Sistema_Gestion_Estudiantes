@@ -1,0 +1,156 @@
+-- Consultas y operaciones en mysql
+use sistema_asistencia;
+-- CONSULTAS SIMPLES
+
+-- 1. Lista de estudiantes activos
+select * from estudiante
+where estado="activo";
+-- 2. Asistencias ausentes en una fecha
+select * from asistencia 
+where estado='ausente' and fecha='2025-01-10';
+-- 3. 
+-- 4.
+-- 5.
+
+-- JOINS 
+-- 1. Asistencias con nombre del estudiante 
+select e.nombres, e.apellidos, a.fecha, a.estado from asistencia a
+join matricula m on a.id_matricula=m.id_matricula
+join estudiante e on m.id_estudiante= e.id_estudiante;
+
+-- 2. Estudiantes por curso
+Select c.nombre as Curso, e.nombres, e.apellidos from matricula m
+join curso c on m.id_curso=c.id_curso
+join estudiante e on m.id_estudiante=e.id_estudiante;
+
+-- 3.Docentes y materias asignadas
+Select d.nombres, d.apellidos, ma.nombre as Materia, c.nombre as Curso 
+from asignacion a
+join  docente d on a.id_docente=d.id_docente
+join materia ma on  a.id_materia=ma.id_materia
+join curso c on a.id_curso=c.id_curso;
+
+-- 4. Asitencias justificadas
+select e.nombres, a.fecha, j.motivo
+from justificacion j
+join asistencia a ON j.id_asistencia = a.id_asistencia
+join matricula m ON a.id_matricula = m.id_matricula
+join estudiante e ON m.id_estudiante = e.id_estudiante;
+
+-- 5. Estudiantes ausentes por materia
+select e.nombres, ma.nombre as materia, a.fecha
+from asistencia a
+join matricula m on a.id_matricula = m.id_matricula
+join estudiante e on m.id_estudiante = e.id_estudiante
+join materia ma on m.id_materia = ma.id_materia
+where a.estado = 'ausente';
+
+-- 6
+
+-- FUNCIONES DE AGREGACION
+-- 1.Total de faltas por estudiante
+Select e.nombres, count(*) as "Total Faltas" from asistencia a
+join matricula m on a.id_matricula=m.id_matricula
+join estudiante e on m.id_estudiante=e.id_estudiante
+where a.estado= 'ausente'
+group by e.nombres;
+
+-- Promedio de asistencias por estudiante 
+Select e.nombres, avg(case when a.estado='presente' then 1 else 0 end) as "Promedio Asistencias"
+from asistencia a
+join matricula m on a.id_matricula=m.id_matricula
+join estudiante e on m.id_estudiante=e.id_estudiante
+group by e.nombres;
+-- SUM
+
+--   FUNCIONES DE CADENA
+-- Mostrar nombre completo en mayúsculas
+select upper(concat(nombres ,' ', apellidos)) AS "Nombre completo"
+from estudiante;
+
+-- FUNCION DE CADENA 2 
+
+-- SUBCONSULTAS
+-- Estudiantes con mas de 1 falta
+Select nombres, apellidos from estudiante
+where id_estudiante in( select m.id_estudiante
+                     from asistencia a
+					join matricula m on a.id_matricula=m.id_matricula
+                    where a.estado='ausente'
+                    group by m.id_estudiante
+                    having count(*)>1
+);
+
+-- SUBCONSULTA 2
+
+-- VISTAS
+-- 1. Reporte general de asistencia 
+create view vista_asistencia_general as
+select e.nombres, e.apellidos, ma.nombre as Materia,
+       a.fecha, a.estado 
+from asistencia a 
+join matricula m on a.id_matricula=m.id_matricula
+join estudiante e on m.id_estudiante=e.id_estudiante
+join materia ma on m.id_materia=ma.id_materia;
+
+-- Operaciones CRUD
+-- 1. INSERT
+INSERT INTO estudiante (nombres, apellidos, correo, estado)
+VALUES ('Jairo', 'Maigua', 'jairo.maigua@epn.edu.ec', 'activo');
+
+-- 2. Actualización
+Update Estudiante set estado='bloqueado' 
+where id=18;
+-- 3.Eliminar 
+DELETE FROM justificacion
+WHERE id_justificacion = 20;
+
+-- ADMINISTRACION Y SEGURIDAD
+-- 2.Usuarios y permisos 
+CREATE USER 'docente'@'localhost' IDENTIFIED BY 'docente123';
+GRANT SELECT, INSERT ON control_asistencia.asistencia TO 'docente'@'localhost';
+
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
+GRANT ALL PRIVILEGES ON control_asistencia.* TO 'admin'@'localhost';
+
+--         SEGURIDAD
+-- BACKUPS
+-- COMPLETO 
+-- mysqldump -u root -p control_asistencia > backup_completo.sql
+-- Incremental 
+-- mysqldump -u root -p control_asistencia asistencia matricula > backup_parcial.sql
+
+-- INDICES
+create index idx_asistencia_fecha on asistencia(fecha);
+create index idx_asistencia_estado on asistencia(estado);
+-- EXPLAIN 
+explain
+select e.nombres, a.fecha, a.estado
+from  asistencia a 
+join matricula m on a.id_matricula=m.id_matricula
+join estudiante e on a.id_matricula=e.id_estudiante
+where a.estado='ausente';
+
+--   TRIGGERS
+-- Tabla auditoria
+create table auditoria_tablas (
+   id_adutoria int auto_increment primary key,
+   tabla_afectada varchar(50),
+   operacion varchar(10),
+   fecha timestamp default current_timestamp
+);
+
+-- trigger insert 
+DELIMITER //
+CREATE TRIGGER trg_insert_asistencia 
+AFTER INSERT ON asistencia
+FOR EACH ROW
+BEGIN 
+ insert into auditoria_tablas(tabla_afectada, operacion)
+values ('asistencia', 'INSERT');
+
+END // 
+DELIMITER ;
+
+-- trigger update
+
