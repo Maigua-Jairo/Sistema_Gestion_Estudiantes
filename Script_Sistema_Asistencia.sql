@@ -11,6 +11,7 @@ Create table if not exists Estudiante(
  correo varchar(100) unique,
  estado varchar(20)
 );
+
 -- Docente
 
 create table if not exists Docente(
@@ -80,5 +81,103 @@ Create table if not exists Justificacion(
     FOREIGN KEY (id_asistencia) REFERENCES asistencia(id_asistencia)
 );
 INSERT INTO Estudiante (nombres, apellidos, correo, estado) VALUES
-('Ana', 'Maria', 'ana.maria@epn.edu.ec', 'activo');
+('Juan', 'Perez', 'juan.perez@epn.edu.ec', 'activo'),
+('Maria', 'Lopez', 'maria.lopez@epn.edu.ec', 'activo'),
+('Carlos', 'Vera', 'carlos.vera@epn.edu.ec', 'activo'),
+('Ana', 'Mendoza', 'ana.mendoza@epn.edu.ec', 'activo'),
+('Luis', 'Ortega', 'luis.ortega@epn.edu.ec', 'activo'),
+('Sofia', 'Ramos', 'sofia.ramos@epn.edu.ec', 'activo'),
+('Diego', 'Paredes', 'diego.paredes@epn.edu.ec', 'activo'),
+('Valeria', 'Castro', 'valeria.castro@epn.edu.ec', 'activo'),
+('Andres', 'Navarro', 'andres.navarro@epn.edu.ec', 'activo'),
+('Camila', 'Torres', 'camila.torres@epn.edu.ec', 'activo');
 select * from Estudiante;
+-- Insertar Docentes
+INSERT INTO docente (nombres, apellidos, correo) VALUES
+('Ana', 'Martinez', 'ana.martinez@epn.edu.ec'),
+('Luis', 'Gomez', 'luis.gomez@epn.edu.ec'),
+('Pedro', 'Salazar', 'pedro.salazar@epn.edu.ec'),
+('Rosa', 'Villacis', 'rosa.villacis@epn.edu.ec'),
+('Jorge', 'Molina', 'jorge.molina@epn.edu.ec'),
+('Paula', 'Espinoza', 'paula.espinoza@epn.edu.ec'),
+('Fernando', 'Reinoso', 'fernando.reinoso@epn.edu.ec'),
+('Lucia', 'Benitez', 'lucia.benitez@epn.edu.ec'),
+('Marco', 'Chavez', 'marco.chavez@epn.edu.ec'),
+('Elena', 'Cruz', 'elena.cruz@epn.edu.ec');
+
+-- Insertar Materias
+INSERT INTO materia (nombre, creditos) VALUES
+('Base de Datos', 4),
+('Programacion I', 5),
+('Programacion II', 5),
+('Matematicas Discretas', 4),
+('Sistemas Operativos', 4),
+('Redes de Computadoras', 4),
+('Ingenieria de Software', 5),
+('Estructura de Datos', 4),
+('Arquitectura de Computadores', 4),
+('Seguridad Informatica', 4);
+-- Insertar Cursos
+INSERT INTO curso (nombre, periodo) VALUES
+('Segundo Software A', '2025-A'),
+('Segundo Software B', '2025-A'),
+('Tercero Software A', '2025-A'),
+('Tercero Software B', '2025-A'),
+('Cuarto Software A', '2025-A'),
+('Cuarto Software B', '2025-A'),
+('Quinto Software A', '2025-A'),
+('Quinto Software B', '2025-A'),
+('Sexto Software A', '2025-A'),
+('Sexto Software B', '2025-A');
+-- Insertar asignaciones
+INSERT INTO asignacion (id_docente, id_materia, id_curso, periodo) VALUES
+(1,1,1,'2025-A'),
+(2,2,2,'2025-A'),
+(3,3,3,'2025-A'),
+(4,4,4,'2025-A'),
+(5,5,5,'2025-A'),
+(6,6,6,'2025-A'),
+(7,7,7,'2025-A'),
+(8,8,8,'2025-A'),
+(9,9,9,'2025-A'),
+(10,10,10,'2025-A');
+-- Insertar matriculas
+INSERT INTO matricula (id_estudiante, id_materia, id_curso) VALUES
+(17,1,1),
+(18,2,2),
+(19,3,3),
+(20,4,4),
+(21,5,5),
+(22,6,6),
+(23,7,7),
+(24,8,8),
+(25,9,9),
+(26,10,10);
+select * from matricula;
+-- Insertar asistencias
+INSERT INTO asistencia (id_matricula, fecha, estado) VALUES
+(11,'2025-01-10','presente'),
+(12,'2025-01-10','presente'), 
+(13,'2025-01-10','ausente'),
+(14,'2025-01-10','presente'),
+(15,'2025-01-10','ausente'),
+(16,'2025-01-10','presente'),
+(17,'2025-01-10','presente'),
+(18,'2025-01-10','ausente'),
+(19,'2025-01-10','presente'),
+(20,'2025-01-10','ausente');
+select * from asistencia;
+-- Insertar justificaciones
+INSERT INTO justificacion (id_asistencia, motivo, aprobado) VALUES
+(21,'Enfermedad',TRUE),
+(22,'Problemas familiares',TRUE),
+(23,'Cita medica',TRUE),
+(24,'Viaje',FALSE),
+(25,'Retraso',FALSE),
+(26,'Actividad institucional',TRUE),
+(27,'Permiso especial',TRUE),
+(28,'Emergencia',TRUE),
+(29,'Fuerza mayor',TRUE),
+(30,'Otro motivo',FALSE);
+
+
