@@ -133,7 +133,7 @@ where a.estado='ausente';
 
 --   TRIGGERS
 -- Tabla auditoria
-create table auditoria_tablas (
+create table auditoria_asistencia (
    id_adutoria int auto_increment primary key,
    tabla_afectada varchar(50),
    operacion varchar(10),
@@ -146,11 +146,30 @@ CREATE TRIGGER trg_insert_asistencia
 AFTER INSERT ON asistencia
 FOR EACH ROW
 BEGIN 
- insert into auditoria_tablas(tabla_afectada, operacion)
+ insert into auditoria_asistencia(tabla_afectada, operacion)
 values ('asistencia', 'INSERT');
 
 END // 
 DELIMITER ;
 
 -- trigger update
+DELIMITER //
+CREATE TRIGGER trg_update_asistencia
+AFTER UPDATE ON asistencia
+FOR EACH ROW
+BEGIN 
+  INSERT INTO auditoria_asistencia(tabla_afectada, operacion)
+  VALUES("asistencia", "UPDATE");
+END //
+DELIMITER ;
 
+-- trigger delete
+DELIMITER //
+CREATE TRIGGER trg_delete_asistencia
+ AFTER DELETE ON asistencia
+ FOR EACH ROW
+BEGIN
+ INSERT INTO auditoria_asistencia(tabla_afectada, operacion)
+ VALUES("asistencia", "DELETE");
+END //
+DELIMITER ;
