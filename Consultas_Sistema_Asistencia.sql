@@ -126,8 +126,8 @@ INSERT INTO estudiante (nombres, apellidos, correo, estado)
 VALUES ('Jairo', 'Maigua', 'jairo.maigua@epn.edu.ec', 'activo');
 
 -- 2. Actualización
-Update Estudiante set estado='bloqueado' 
-where id=18;
+Update estudiante set estado='bloqueado' 
+where id_estudiante=1;
 -- 3.Eliminar 
 DELETE FROM justificacion
 WHERE id_justificacion = 20;
