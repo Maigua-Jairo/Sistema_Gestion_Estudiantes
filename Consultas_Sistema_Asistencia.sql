@@ -86,7 +86,8 @@ group by e.nombres;
 select upper(concat(nombres ,' ', apellidos)) AS "Nombre completo"
 from estudiante;
 
--- FUNCION DE CADENA 2 
+-- FUNCION DE CADENA 2 longitud de correo
+select nombres, length(correo) as "Longitud del correo" from estudiante;
 
 -- SUBCONSULTAS
 -- Estudiantes con mas de 1 falta
