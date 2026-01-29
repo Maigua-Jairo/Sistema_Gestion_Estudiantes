@@ -10,9 +10,12 @@ select * from asistencia
 where estado='ausente' and fecha='2025-01-10';
 -- 3. Listar todos los docentes
 select * from docente;
--- 4.
--- 5.
-
+-- 4. Materias con 4 creditos
+select * from materia 
+where creditos > 4;
+-- 5. Cursos del periodo 2025-A
+select * from curso
+where periodo = '2025-A';
 -- JOINS 
 -- 1. Asistencias con nombre del estudiante 
 select e.nombres, e.apellidos, a.fecha, a.estado from asistencia a
