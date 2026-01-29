@@ -73,7 +73,13 @@ from asistencia a
 join matricula m on a.id_matricula=m.id_matricula
 join estudiante e on m.id_estudiante=e.id_estudiante
 group by e.nombres;
--- SUM
+
+-- SUM total de asistencias registradas por estudiante
+select e.nombres as Nombre, sum(case when a.estado = 'presente' then 1 else 0 end) as "Total Asistencias"
+from asistencia a
+join matricula ma on a.id_matricula = ma.id_matricula
+join estudiante e on ma.id_estudiante = e.id_estudiante
+group by e.nombres;
 
 --   FUNCIONES DE CADENA
 -- Mostrar nombre completo en mayúsculas
