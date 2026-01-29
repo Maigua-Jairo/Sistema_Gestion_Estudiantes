@@ -146,19 +146,21 @@ DROP USER 'admin'@'localhost';
 
 SELECT user, host FROM mysql.user;
 FLUSH PRIVILEGES;
+
 --         SEGURIDAD
 -- BACKUP COMPLETO 
 -- Copia toda la base de datos sistema_asistencia
 -- Comando ejecutado desde la terminal del sistema operativo
 
--- mysqldump -u root -p sistema_asistencia > backup_completo_sistema_asistencia.sql
+-- mysqldump -u root -p sistema_asistencia > "%USERPROFILE%\Desktop\backup_completo_sistema_asistencia.sql"
 
 -- BACKUP LOGICO / PARCIAL
 
 -- Copia solo tablas críticas del sistema
 -- Simula un backup incremental
 
--- mysqldump -u root -p sistema_asistencia asistencia matricula justificacion > backup_parcial_asistencia.sql
+-- mysqldump -u root -p sistema_asistencia asistencia matricula justificacion > "%USERPROFILE%\Desktop\backup_parcial_asistencia.sql"
+
 -- INDICES
 create index idx_asistencia_fecha on asistencia(fecha);
 create index idx_asistencia_estado on asistencia(estado);
