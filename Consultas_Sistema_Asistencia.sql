@@ -100,7 +100,15 @@ where id_estudiante in( select m.id_estudiante
                     having count(*)>1
 );
 
--- SUBCONSULTA 2
+-- SUBCONSULTA 2 
+-- estudiantes que no faltaron 
+select nombres, apellidos from estudiante 
+where id_estudiante not in(
+	select m.id_estudiante
+    from asistencia a
+    join matricula m on a.id_matricula = m.id_matricula
+    where a.estado = "ausente"
+);
 
 -- VISTAS
 -- 1. Reporte general de asistencia 
