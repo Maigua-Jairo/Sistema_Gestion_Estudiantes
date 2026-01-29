@@ -49,7 +49,15 @@ join estudiante e on m.id_estudiante = e.id_estudiante
 join materia ma on m.id_materia = ma.id_materia
 where a.estado = 'ausente';
 
--- 6
+-- 6. Estudiantes con su docente y materia
+select e.nombres as Nombre , e.apellidos as Apellido,
+	   d.nombres as Docente,
+       ma.nombre as Materia 
+from estudiante e
+join matricula m on e.id_estudiante = m.id_estudiante
+join materia ma on m.id_materia = ma.id_materia
+join asignacion a on ma.id_materia = a.id_materia
+join docente d on a.id_docente = d.id_docente ;
 
 -- FUNCIONES DE AGREGACION
 -- 1.Total de faltas por estudiante
