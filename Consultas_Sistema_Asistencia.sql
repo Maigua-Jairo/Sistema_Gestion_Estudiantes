@@ -8,7 +8,8 @@ where estado="activo";
 -- 2. Asistencias ausentes en una fecha
 select * from asistencia 
 where estado='ausente' and fecha='2025-01-10';
--- 3. 
+-- 3. Listar todos los docentes
+select * from docente;
 -- 4.
 -- 5.
 
