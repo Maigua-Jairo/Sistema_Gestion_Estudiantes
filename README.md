@@ -50,12 +50,8 @@ El modelo se encuentra normalizado hasta **3FN**, evitando redundancia y depende
 ---
 
 ## 5. Estructura del repositorio
-Sistema_Gestion_Estudiantes/
-├── Script_Sistema_Asistencia.sql
-├── Consultas_Sistema_Asistencia.sql
-├── backups/
-  ├── backup_completo_sistema_asistencia.sql
-  ├── backup_parcial_asistencia.sql
+<img width="362" height="205" alt="image" src="https://github.com/user-attachments/assets/33bd2884-1570-4f8f-9a1f-069334556669" />
+
 ---
 
 ## 6. Implementación
