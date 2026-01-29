@@ -135,10 +135,10 @@ WHERE id_justificacion = 20;
 -- ADMINISTRACION Y SEGURIDAD
 -- 2.Usuarios y permisos 
 CREATE USER 'docente'@'localhost' IDENTIFIED BY 'docente123';
-GRANT SELECT, INSERT ON control_asistencia.asistencia TO 'docente'@'localhost';
+GRANT SELECT, INSERT ON sistema.asistencia TO 'docente'@'localhost';
 
 CREATE USER 'admin'@'localhost' IDENTIFIED BY 'admin123';
-GRANT ALL PRIVILEGES ON control_asistencia.* TO 'admin'@'localhost';
+GRANT ALL PRIVILEGES ON sistema_asistencia.* TO 'admin'@'localhost';
 
 --         SEGURIDAD
 -- BACKUPS
