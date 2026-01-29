@@ -144,41 +144,41 @@ INSERT INTO asignacion (id_docente, id_materia, id_curso, periodo) VALUES
 (10,10,10,'2025-A');
 -- Insertar matriculas
 INSERT INTO matricula (id_estudiante, id_materia, id_curso) VALUES
-(17,1,1),
-(18,2,2),
-(19,3,3),
-(20,4,4),
-(21,5,5),
-(22,6,6),
-(23,7,7),
-(24,8,8),
-(25,9,9),
-(26,10,10);
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10);
 select * from matricula;
 -- Insertar asistencias
 INSERT INTO asistencia (id_matricula, fecha, estado) VALUES
-(11,'2025-01-10','presente'),
-(12,'2025-01-10','presente'), 
-(13,'2025-01-10','ausente'),
-(14,'2025-01-10','presente'),
-(15,'2025-01-10','ausente'),
-(16,'2025-01-10','presente'),
-(17,'2025-01-10','presente'),
-(18,'2025-01-10','ausente'),
-(19,'2025-01-10','presente'),
-(20,'2025-01-10','ausente');
+(1,'2025-01-10','presente'),
+(2,'2025-01-10','presente'), 
+(3,'2025-01-10','ausente'),
+(4,'2025-01-10','presente'),
+(5,'2025-01-10','ausente'),
+(6,'2025-01-10','presente'),
+(7,'2025-01-10','presente'),
+(8,'2025-01-10','ausente'),
+(9,'2025-01-10','presente'),
+(10,'2025-01-10','ausente');
 select * from asistencia;
 -- Insertar justificaciones
 INSERT INTO justificacion (id_asistencia, motivo, aprobado) VALUES
-(21,'Enfermedad',TRUE),
-(22,'Problemas familiares',TRUE),
-(23,'Cita medica',TRUE),
-(24,'Viaje',FALSE),
-(25,'Retraso',FALSE),
-(26,'Actividad institucional',TRUE),
-(27,'Permiso especial',TRUE),
-(28,'Emergencia',TRUE),
-(29,'Fuerza mayor',TRUE),
-(30,'Otro motivo',FALSE);
+(1,'Enfermedad',TRUE),
+(2,'Problemas familiares',TRUE),
+(3,'Cita medica',TRUE),
+(4,'Viaje',FALSE),
+(5,'Retraso',FALSE),
+(6,'Actividad institucional',TRUE),
+(7,'Permiso especial',TRUE),
+(8,'Emergencia',TRUE),
+(9,'Fuerza mayor',TRUE),
+(10,'Otro motivo',FALSE);
 
 
