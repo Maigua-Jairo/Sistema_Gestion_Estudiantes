@@ -1,7 +1,7 @@
 -- Base de datos para el proyecto de 2 bimestre
 Create database if not exists sistema_asistencia;
 use sistema_asistencia;
-
+-- hola
 -- Tablas
 -- Estudiante
 Create table if not exists Estudiante(
