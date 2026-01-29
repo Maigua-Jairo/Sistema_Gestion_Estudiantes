@@ -56,4 +56,78 @@ Sistema_Gestion_Estudiantes/
 ├── backups/
   ├── backup_completo_sistema_asistencia.sql
   ├── backup_parcial_asistencia.sql
+---
 
+## 6. Implementación
+La base de datos fue implementada en **MySQL**, creando tablas con restricciones de integridad como:
+- PRIMARY KEY
+- FOREIGN KEY
+- NOT NULL
+- UNIQUE
+
+Se insertaron datos de prueba para validar el correcto funcionamiento del modelo.
+
+---
+
+## 7. Consultas SQL
+El proyecto incluye:
+- Consultas simples con filtros.
+- Seis consultas con JOIN entre múltiples tablas.
+- Funciones de agregación (COUNT, AVG, SUM).
+- Funciones de cadena (UPPER, LENGTH).
+- Subconsultas.
+- Vistas para reportes de asistencia.
+- Operaciones CRUD (INSERT, UPDATE, DELETE).
+
+---
+
+## 8. Seguridad
+Se implementaron mecanismos de seguridad que incluyen:
+- Creación de usuarios con distintos niveles de permisos (administrador y docente).
+- Asignación de privilegios mediante GRANT.
+- Control de accesos a la base de datos.
+- Prevención teórica de inyección SQL mediante el uso de consultas preparadas en backend.
+- Uso de hash para contraseñas como concepto de seguridad.
+
+---
+
+## 9. Auditoría
+Se implementó una auditoría mediante triggers:
+- Trigger AFTER INSERT
+- Trigger AFTER UPDATE
+- Trigger AFTER DELETE
+
+Estos triggers registran las operaciones realizadas sobre la tabla de asistencia en una tabla de auditoría, permitiendo el seguimiento de cambios.
+
+---
+
+## 10. Backups
+Se realizaron dos tipos de respaldos:
+- **Backup completo:** copia total de la base de datos.
+- **Backup lógico/parcial:** copia de tablas críticas (asistencia, matrícula y justificación).
+
+Los backups garantizan la recuperación de la información y la durabilidad de los datos.
+
+---
+
+## 11. ACID
+El sistema cumple con las propiedades ACID:
+- **Atomicidad:** uso de transacciones.
+- **Consistencia:** restricciones de integridad.
+- **Aislamiento:** control de concurrencia del SGBD.
+- **Durabilidad:** commits y backups realizados.
+
+---
+
+## 12. Conclusiones
+El proyecto permitió aplicar de manera práctica los conceptos fundamentales de bases de datos relacionales, fortaleciendo conocimientos en modelado, normalización, consultas avanzadas, seguridad y administración de bases de datos.
+
+---
+
+## 13. Recomendaciones y trabajos futuros
+- Implementar una interfaz web para el sistema.
+- Integrar la base de datos con un backend usando prepared statements.
+- Optimizar consultas mediante índices adicionales.
+- Implementar control de roles más detallado.
+
+---
