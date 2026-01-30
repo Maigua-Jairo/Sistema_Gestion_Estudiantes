@@ -169,6 +169,25 @@ FLUSH PRIVILEGES;
 SELECT SHA2('docente123', 256) AS hash_contraseña_docente;
 SELECT SHA2('admin123', 256) AS hash_contraseña_admin;
 
+-- inyection 
+select * from estudiante where id_estudiante = 1 or 1=1;
+
+-- creamos funcion
+
+delimiter // 
+create function buscar_estudiante(id int)
+returns varchar (100)
+deterministic
+begin
+	declare nombre_estudiante varchar(100);
+    select concat(nombres, ' ',apellidos) into nombre_estudiante from estudiante where id_estudiante = id;
+    return nombre_estudiante;
+end //
+delimiter ; 
+
+select buscar_estudiante(2) as 'NOmbre Estudiante';
+select buscar_estudiante(2 or ' '=' ') as 'Evitar injection';
+
 -- INDICES
 create index idx_asistencia_fecha on asistencia(fecha);
 create index idx_asistencia_estado on asistencia(estado);
