@@ -161,6 +161,14 @@ FLUSH PRIVILEGES;
 
 -- mysqldump -u root -p sistema_asistencia asistencia matricula justificacion > "%USERPROFILE%\Desktop\backup_parcial_asistencia.sql"
 
+-- SEGURIDAD: CIFRADO DE CONTRASEÑAS (HASH)
+
+-- Ejemplo de uso de funciones hash para el cifrado de contraseñas.
+-- Se utiliza SHA2 como mecanismo de hash seguro.
+
+SELECT SHA2('docente123', 256) AS hash_contraseña_docente;
+SELECT SHA2('admin123', 256) AS hash_contraseña_admin;
+
 -- INDICES
 create index idx_asistencia_fecha on asistencia(fecha);
 create index idx_asistencia_estado on asistencia(estado);
